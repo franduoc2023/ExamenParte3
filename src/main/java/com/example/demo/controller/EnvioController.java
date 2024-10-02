@@ -2,6 +2,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,6 +40,11 @@ public ResponseEntity<Envio> getEnvioByid(@PathVariable Long id) {
     Optional<Envio> envio = envioService.getEnvioByid(id);
     
     if (envio.isPresent()) {
+        EntityModel<Envio> envioModel = EntityModel.of(envio.get());
+
+        Link selfLink = linkTo(methodOn(EnvioController.class).getEnvioByid(id)).withSelfRel();
+        envioModel.add(selfLink);
+        envioModel.add(selfLink);
         return ResponseEntity.ok(envio.get());
     } else {
         return ResponseEntity.notFound().build();

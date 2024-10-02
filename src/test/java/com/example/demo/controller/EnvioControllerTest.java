@@ -42,7 +42,7 @@ public void obtenerTodosTest () throws Exception {
     
     mockMvc.perform(MockMvcRequestBuilders.get("/envios"))
         .andExpect(MockMvcResultMatchers.status().isOk())
-        // Ajustamos el path para acceder a la lista dentro de _embedded.envioList
+        //parte 0 largo 2 comprueba 2 elemento
         .andExpect(MockMvcResultMatchers.jsonPath("$._embedded.envioList", Matchers.hasSize(2)))
         .andExpect(MockMvcResultMatchers.jsonPath("$._embedded.envioList[0].name", Matchers.is("envio prueba 1")))
         .andExpect(MockMvcResultMatchers.jsonPath("$._embedded.envioList[1].name", Matchers.is("envio prueba 2")));

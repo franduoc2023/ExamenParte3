@@ -3,7 +3,8 @@ package com.example.demo.service;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
+import java.util.Arrays;
+import java.util.List;
 import com.example.demo.model.Envio;
 import com.example.demo.repository.EnvioRepository;
 
@@ -29,10 +30,26 @@ public class EnvioServiceImplTest {
         Envio resultado = envioServiceImpl.createEnvio(envio);
         assertEquals("rey", resultado.getName());
 
-        }
+        }}
 
-
-
-    }
-
-}
+        @Test
+        public void getAllEnviosTest() {
+            Envio envio1 = new Envio();
+            envio1.setId(1L);
+            envio1.setName("Envio 1");
+    
+            Envio envio2 = new Envio();
+            envio2.setId(2L);
+            envio2.setName("Envio 2");
+    
+            List<Envio> envios = Arrays.asList(envio1, envio2);
+            when(envioRepositorioMock.findAll()).thenReturn(envios);   
+    
+            List<Envio> resultado = envioServiceImpl.getAllEnvios();
+    
+            assertEquals(2, resultado.size());
+            assertEquals("Envio 1", resultado.get(0).getName());
+            assertEquals("Envio 2", resultado.get(1).getName());
+    
+            
+        }}

@@ -30,11 +30,11 @@ import com.example.demo.model.Envio;
 
         @Test
         public void incrementoIdEnvio() {
-            Envio envioId = new Envio();
-            envioId.setName("envio prueba cambio id 1");
+            Envio envioId1 = new Envio();
+            envioId1.setName("envio prueba cambio id 1");
             Envio envioId2 = new Envio();
             envioId2.setName("envio prueba cambio id  2");
-            Envio resultadoId1 = envioRepository.save(envioId);
+            Envio resultadoId1 = envioRepository.save(envioId1);
             Envio resultadoId2 = envioRepository.save(envioId2);
             assertNotNull(resultadoId2.getId());
             assertNotNull(resultadoId1.getId());
